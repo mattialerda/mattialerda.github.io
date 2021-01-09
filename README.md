@@ -1,4 +1,4 @@
 # mattialerda
-Repositorry of my portfolio website.
+Repository of my portfolio website.
 
 https://mattialerda.com
