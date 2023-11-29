@@ -1,4 +1,2 @@
 # mattialerda
-Repository of my portfolio website.
-
-https://mattialerda.com
+Hi! I'm a developer! 👋
