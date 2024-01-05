@@ -30,7 +30,7 @@
               <i class="fas fa-envelope fa-2x"></i>
             </a>
             <a class="ml-5 d-inline-block" href="https://www.instagram.com/yolo.fiulla/" target="_blank">
-              <v-img src="https://imgix.cosmicjs.com/bbc525a0-7164-11eb-87a2-9be5e90cdf74-instagram.svg" contain width="30" height="30" />
+              <v-img src="https://cdn.cosmicjs.com/bbc525a0-7164-11eb-87a2-9be5e90cdf74-instagram.svg" contain width="30" height="30" />
             </a>
             <a class="facebook ml-5" href="https://www.facebook.com/mattialerda00/" target="_blank">
               <i class="fab fa-facebook fa-2x my-1"></i>
@@ -39,7 +39,7 @@
               <i class="fab fa-github fa-2x my-1"></i>
             </a>
             <a class="ml-5 d-inline-block" href="https://stackoverflow.com/users/12287153/mattia-lerda" target="_blank">
-              <v-img src="https://imgix.cosmicjs.com/c89e06c0-7164-11eb-87a2-9be5e90cdf74-stack-overflow.svg" contain width="30" height="30" />
+              <v-img src="https://cdn.cosmicjs.com/c89e06c0-7164-11eb-87a2-9be5e90cdf74-stack-overflow.svg" contain width="30" height="30" />
             </a>
             <!--<a class="accent--text ml-5" href="https://imgix.cosmicjs.com/0f50b610-7167-11eb-87a2-9be5e90cdf74-curriculum.pdf" target="_blank">
               <i class="fas fa-id-card fa-2x"></i>
@@ -62,10 +62,10 @@
 </template>
 
 <script>
-const Cosmic = require('cosmicjs')()
-const bucket = Cosmic.bucket({
-  slug: 'mattialerda-bucket',
-  read_key: 'ooDtNqsMWF0yNqxZI5Ytz4e5NO3q3OWOYg2kCYtJqy37lV4BVo'
+import { createBucketClient } from '@cosmicjs/sdk'
+const cosmic = createBucketClient({
+  bucketSlug: 'mattialerda-production',
+  readKey: 'JjZLbJqM6B2a9Lq1qnC2bh3fuG1aBu3xyNCxoNeNpLHSateEH4'
 })
 
 export default {
@@ -78,16 +78,23 @@ export default {
     }
   },
   created () {
-    bucket.getObjects({ type: 'home', props: 'content' }).then(data => {
-      this.description = data.objects[0].content
-    }).catch(err => {
-      console.log(err)
-    })
+    cosmic.objects
+      .find({ type: 'home' })
+      .props(['content'])
+      .limit(1)
+      .then(data => {
+        this.description = data.objects[0].content
+      }).catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>
 
 <style>
+a {
+  color: hsl(141, 71%, 48%) !important;
+}
 .underline {
   text-decoration:underline;
   text-decoration-color: hsl(141, 71%, 48%);

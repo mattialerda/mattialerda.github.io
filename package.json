@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@cosmicjs/sdk": "^1.0.11",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "core-js": "^3.6.5",
-    "cosmicjs": "^3.4.0",
     "vue": "^2.6.11",
     "vue-typed-js": "^0.1.2",
     "vuetify": "^2.6.0"
