@@ -4,11 +4,13 @@ import Vuetify from 'vuetify/lib/framework'
 Vue.use(Vuetify)
 
 // https://stackoverflow.com/a/60584438/12287153
-// const mq = window.matchMedia('(prefers-color-scheme: dark)')
+const mq = window.matchMedia('(prefers-color-scheme: dark)')
+
+console.log(mq.matches)
 
 export default new Vuetify({
   theme: {
-    dark: false, // mq.matches,
+    dark: mq.matches,
     themes: {
       light: {
         primary: '#363636',
