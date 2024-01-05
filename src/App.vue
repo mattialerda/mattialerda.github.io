@@ -78,7 +78,7 @@ export default {
     }
   },
   created () {
-    bucket.getObjects({ type: 'home-it', props: 'content' }).then(data => {
+    bucket.getObjects({ type: 'home', props: 'content' }).then(data => {
       this.description = data.objects[0].content
     }).catch(err => {
       console.log(err)
