@@ -35,7 +35,7 @@
             <a class="facebook ml-5" href="https://www.facebook.com/mattialerda00/" target="_blank">
               <i class="fab fa-facebook fa-2x my-1"></i>
             </a>
-            <a class="github ml-5" href="https://github.com/mattialerda" target="_blank">
+            <a v-bind:class="{'github dark-mode ml-5': darkModeEnabled, 'github ml-5': !darkModeEnabled}" href="https://github.com/mattialerda" target="_blank">
               <i class="fab fa-github fa-2x my-1"></i>
             </a>
             <a class="ml-5 d-inline-block" href="https://stackoverflow.com/users/12287153/mattia-lerda" target="_blank">
@@ -77,6 +77,11 @@ export default {
       closeTag: '/>'
     }
   },
+  computed: {
+    darkModeEnabled () {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+  },
   created () {
     cosmic.objects
       .find({ type: 'home' })
@@ -106,5 +111,9 @@ a {
 .github,
 .github:hover {
   color: black !important;
+}
+.github.dark-mode,
+.github.dark-mode:hover {
+  color: white !important;
 }
 </style>
